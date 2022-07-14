@@ -1,0 +1,8 @@
+datapath: "pbmc_2018-05-24_dev"
+individual_remapping: "pbmc_2018-05-24_dev/individual_remapping.rds"
+mongo:
+  host: "mongo01"
+  db: "jjjohnston_db"
+  user: "jjjohnston"
+  password: "bxwVxUrl"
+cores: 4
