@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
   library(tibble)
-  library(mongolite)
+  #library(mongolite)
   library(glue)
   library(ggplot2)
   library(parallel)
@@ -58,20 +58,20 @@ individual_remapping_table <- readRDS(app_config$individual_remapping)
 
 # Mongo -----
 
-mongo_connections <- list()
+#mongo_connections <- list()
 
-mongo_connection <- function(collection) {
-  if(is.null(mongo_connections[[collection]])) {
-    mongo_connection_url <- glue("mongodb://{user}:{password}@{host}/{db}",
-                                 user     = app_config$mongo$user,
-                                 password = app_config$mongo$password,
-                                 host     = app_config$mongo$host,
-                                 db       = app_config$mongo$db)
-    
-    mongo_connections[[collection]] <<- mongo(url=mongo_connection_url, collection=collection)
-  }
-  return(mongo_connections[[collection]])
-}
+#mongo_connection <- function(collection) {
+#  if(is.null(mongo_connections[[collection]])) {
+#    mongo_connection_url <- glue("mongodb://{user}:{password}@{host}/{db}",
+#                                 user     = app_config$mongo$user,
+#                                 password = app_config$mongo$password,
+#                                 host     = app_config$mongo$host,
+#                                 db       = app_config$mongo$db)
+#    
+#    mongo_connections[[collection]] <<- mongo(url=mongo_connection_url, collection=collection)
+#  }
+#  return(mongo_connections[[collection]])
+#}
 
 # Helpers -----
 
