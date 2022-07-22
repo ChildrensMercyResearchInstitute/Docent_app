@@ -8,7 +8,6 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(tidyr)
   library(tibble)
-  #library(mongolite)
   library(glue)
   library(ggplot2)
   library(parallel)
@@ -56,22 +55,6 @@ glue2 <- function(..., .envir=parent.frame()) {
 
 individual_remapping_table <- readRDS(app_config$individual_remapping)
 
-# Mongo -----
-
-#mongo_connections <- list()
-
-#mongo_connection <- function(collection) {
-#  if(is.null(mongo_connections[[collection]])) {
-#    mongo_connection_url <- glue("mongodb://{user}:{password}@{host}/{db}",
-#                                 user     = app_config$mongo$user,
-#                                 password = app_config$mongo$password,
-#                                 host     = app_config$mongo$host,
-#                                 db       = app_config$mongo$db)
-#    
-#    mongo_connections[[collection]] <<- mongo(url=mongo_connection_url, collection=collection)
-#  }
-#  return(mongo_connections[[collection]])
-#}
 
 # Helpers -----
 
@@ -296,15 +279,6 @@ server <- function(input, output, session) {
     if(input$rsID == "") return(NULL)
     log_message("Updating genotypes...")
     
-    # genos <- mongo_connection("genotypes")$find(glue2('{ "rsid": "<input$rsID>" }'))
-    #if(nrow(genos) == 0) {
-    #  log_message("No genotypes for rsID ", input$rsID)?
-    #  return(NULL)
-    #}
-
-    #write.table(genos, file = "genos.txt", sep = "\t",row.names = TRUE, col.names = NA)
-    #log_message(i)
-
     conn <- dbConnect(RSQLite::SQLite(), "genotype_v2.db")
     dbListTables(conn)
     select_statement<-paste0("SELECT * FROM genotypes where rsid = '", input$rsID, "'")
