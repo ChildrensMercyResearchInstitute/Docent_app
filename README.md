@@ -3,7 +3,11 @@
 sh docker_build.sh 
 
 ##run the app
-docker run -p 3838:3838 docker.io/man4ish/docent:latest
+docker run -p 3838:3838 -v /path to data_folder/pbmc_2018-05-24_dev:/pbmc_2018-05-24_dev docker.io/man4ish/docent:latest
+
+###Example
+docker run -p 3838:3838 -v /Users/mkumar1/Desktop/apps/Docent_app/pbmc_2018-05-24_dev:/pbmc_2018-05-24_dev docker.io/man4ish/docent:latest
+
 
 ##browse the application
 http://0.0.0.0:3838

@@ -50,6 +50,6 @@ COPY log .
 RUN chown app:app -R /home/app
 USER app
 EXPOSE 3838
-
+#CMD ["sh"]
 CMD ["R", "-e", "shiny::runApp('/home/app')"]
 
