@@ -1,3 +1,3 @@
-datapath: "pbmc_2018-05-24_dev"
-individual_remapping: "pbmc_2018-05-24_dev/individual_remapping.rds"
+datapath: "/pbmc_2018-05-24_dev"
+individual_remapping: "/pbmc_2018-05-24_dev/individual_remapping.rds"
 cores: 4
