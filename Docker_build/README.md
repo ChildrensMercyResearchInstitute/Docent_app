@@ -6,7 +6,7 @@ Docent is a web-based single-cell gene expression exploration tool that integrat
 
  - [R](https://www.r-project.org) 3.5.0 or higher (TODO: list of required R packages)
  - A [Seurat](https://satijalab.org/seurat) object that has been saved to disk via `saveRDS()`
- - [MongoDB](https://www.mongodb.com) server version 3.6 or higher
+ - SQLite (https://www.sqlite.org/)
  - A VCF file providing genotypes for each individual
 
 ## Installation: Shiny Server
@@ -25,5 +25,4 @@ The `config.yaml` file will be read by the app on startup. Copy the `config.yaml
 
   - `datapath`: Path to a data directory generated using the `export_seurat_to_rds.r` script
   - `individual_remapping`: Path to a saved R data.frame specifying any necessary mappings between individuals in the single-cell data and those in the genotype data
-  - `mongo` section: Specifies the location and credentials for the Mongo-based genotype database
   - `cores`: Maximum number of threads to use during a single request
