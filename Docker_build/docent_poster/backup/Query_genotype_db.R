@@ -1,7 +1,0 @@
-library(RSQLite)
-conn <- dbConnect(RSQLite::SQLite(), "genotype.db")
-dbListTables(conn)
-select_statement<-paste0("SELECT * FROM genotypes where rsid = ", "'rs3813188'")
-print(select_statement)
-#dbGetQuery(conn, "SELECT * FROM genotypes limit 10")
-dbGetQuery(conn,select_statement)

@@ -279,7 +279,7 @@ server <- function(input, output, session) {
     if(input$rsID == "") return(NULL)
     log_message("Updating genotypes...")
     
-    conn <- dbConnect(RSQLite::SQLite(), "/pbmc_2018-05-24_dev/genotype_v2.db")
+    conn <- dbConnect(RSQLite::SQLite(), "/docent_data/genotype_v2.db")
     dbListTables(conn)
     select_statement<-paste0("SELECT * FROM genotypes where rsid = '", input$rsID, "'")
     write.csv(select_statement, file = "statement.txt")
