@@ -1,5 +1,5 @@
 FROM rocker/r-base:latest
-LABEL maintainer="USER <user@example.com>"
+LABEL maintainer="manish <mkumar1@cmh.edu>"
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
@@ -30,12 +30,12 @@ RUN install2.r --error --skipinstalled \
     yaml \
     RSQLite \
     readr \ 
-    optparse 
+    optparse \
+    tibble 
  
-    
 RUN R -e "install.packages('VariantAnnotation',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('Seurat',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('tibble',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+
 
 RUN echo "local(options(shiny.port = 3838, shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 RUN addgroup --system app \
