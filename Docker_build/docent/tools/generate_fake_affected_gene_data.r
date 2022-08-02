@@ -18,7 +18,7 @@ freq_distribution <- function(n, lower_bound=0.0001, mean=0.10, sd=0.045) {
   pmax(lower_bound, rnorm(n, mean=mean, sd=sd))
 }
 
-datapath <- "/home/jjjohnston/projects/explore_10x/rds_data/pbmc_2018-05-24_dev"
+datapath <- "pbmc_2018-05-24_dev"
 
 genes_df <- readRDS(file.path(datapath, "genes.rds"))
 i_df     <- readRDS(file.path(datapath, "individuals.rds"))

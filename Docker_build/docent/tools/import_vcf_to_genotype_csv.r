@@ -3,7 +3,7 @@ library(dplyr)
 library(magrittr)
 library(readr)
 
-vcf <- "/analysis/projects/xenon/impute2/vcf/All_Genotyping.vcf.gz"
+vcf <- "All_Genotyping.vcf.gz"
 x <- readGT(vcf)
 
 sample_names <- colnames(x)

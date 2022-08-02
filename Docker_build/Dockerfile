@@ -8,48 +8,42 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     libssh2-1-dev \
     && rm -rf /var/lib/apt/lists/*
+
 RUN install2.r --error --skipinstalled \
     shiny \
     forecast \
     jsonlite \
     ggplot2 \
     htmltools \
-    plotly  
+    plotly \  
+    shinyjs \
+    shinyWidgets \
+    shinycssloaders \
+    magrittr \
+    dplyr \
+    tidyr \
+    tibble \
+    glue \
+    parallel 
 
-RUN R -e "install.packages('shiny',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('shinyjs',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('shinyWidgets',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('shinycssloaders',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('magrittr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('dplyr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('tidyr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('tibble',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('mongolite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('glue',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('ggplot2',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('parallel',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('yaml',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('RSQLite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-
+RUN install2.r --error --skipinstalled \
+    yaml \
+    RSQLite \
+    readr \ 
+    optparse 
+ 
+    
 RUN R -e "install.packages('VariantAnnotation',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('dplyr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('magrittr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('raedr',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-
-RUN R -e "install.packages('optparse',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('Seurat',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 RUN R -e "install.packages('tibble',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('mongolite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 
 RUN echo "local(options(shiny.port = 3838, shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 RUN addgroup --system app \
     && adduser --system --ingroup app app
 WORKDIR /home/app
-COPY docent_poster .
+COPY docent .
 COPY log .
 RUN chown app:app -R /home/app
 USER app
 EXPOSE 3838
-#CMD ["sh"]
 CMD ["R", "-e", "shiny::runApp('/home/app')"]
-

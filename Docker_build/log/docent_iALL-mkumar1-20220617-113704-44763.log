@@ -1,2 +1,0 @@
-su: ignore --preserve-environment, it's mutually exclusive to --login.
--bash: R: command not found
